@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EnglishTrainer</string>
+
+    <string name="sign_out_button">Odhlásit se</string>
+    <string name="revoke_button">Revokni se</string>
+    <string name="create_user_button">Vytvor uzivatele</string>
+    <string name="get_user_button">Ziskej uzivatele</string>
+
+    <!-- MENU -->
+    <string name="action_logout">Odhlásit se</string>
+    <string name="action_add_category">Přidej kategorii</string>
+</resources>

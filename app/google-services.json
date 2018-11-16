@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "122358837801",
+    "firebase_url": "https://englishtrainer-39cef.firebaseio.com",
+    "project_id": "englishtrainer-39cef",
+    "storage_bucket": "englishtrainer-39cef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122358837801:android:3af91c24faae1f86",
+        "android_client_info": {
+          "package_name": "cz.ich.englishtrainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122358837801-1vb141a24b3j0k9t7bbde0nu7h5fv13c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.ich.englishtrainer",
+            "certificate_hash": "010b9b42c6cf84a3af7e6927ac80cbcffc9b3a08"
+          }
+        },
+        {
+          "client_id": "122358837801-h54cejqmrdijubfp10q9s7iaafi9n00b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.ich.englishtrainer",
+            "certificate_hash": "1172a821cb59f52450c7ff3beb99e28ae36e0f6a"
+          }
+        },
+        {
+          "client_id": "122358837801-tcgnm2e3rbqi5v2q3kapbq31mdp4dc2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVP7TS2s3F3ls8Tn_yxOrFrLpgW1GuGUA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122358837801-tcgnm2e3rbqi5v2q3kapbq31mdp4dc2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
