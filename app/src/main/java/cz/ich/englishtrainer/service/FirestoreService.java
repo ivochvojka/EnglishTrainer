@@ -14,13 +14,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cz.ich.englishtrainer.model.Word;
+import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.subjects.CompletableSubject;
+import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.ReplaySubject;
+import timber.log.Timber;
 
 /**
  * Implementation of Firebase Firestore database.
@@ -51,8 +56,33 @@ public class FirestoreService {
         this.mFirebaseFirestore = firebaseFirestore;
     }
 
-    public void readDb() {
-//        mFirebaseFirestore.collection("users").document("Contacts").
+    public Observable<List<String>> addAlbum(final List<String> albums, final String albumName, int level) {
+        final PublishSubject subject = PublishSubject.create();
+
+        final Map<String, Object> map = new HashMap<>();
+        map.put("level", level);
+
+        final DocumentReference documentRef = mFirebaseFirestore.collection("users")
+                .document(firebaseUser.getUid())
+                .collection("albums")
+                .document(albumName);
+
+        documentRef.set(map);
+
+        documentRef.collection("words")
+                .add(map)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Timber.d("Reference added successfully");
+                        albums.add(albumName);
+
+                    }
+                });
+
+        subject.onNext(albums);
+        subject.onComplete();
+        return subject;
     }
 
     public Observable<List<String>> getAlbums() {
@@ -81,6 +111,28 @@ public class FirestoreService {
         return subject;
     }
 
+    public Completable addWord(final String album, Word word) {
+        final CompletableSubject subject = CompletableSubject.create();
+
+        word.setUpdated(new Date());
+
+        mFirebaseFirestore.collection("users")
+                .document(firebaseUser.getUid())
+                .collection("albums")
+                .document(album)
+                .collection("words")
+                .add(word)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Timber.d("Reference to word added successfully");
+                        subject.onComplete();
+                    }
+                });
+
+        return subject;
+    }
+
     public Observable<List<Word>> getWords(String album) {
         final ReplaySubject subject = ReplaySubject.create();
         mFirebaseFirestore.collection("users")
@@ -95,8 +147,7 @@ public class FirestoreService {
                         final List<Word> words = new ArrayList<>();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult().getDocuments()) {
-                                final Map<String, Object> data = document.getData();
-                                words.add(new Word((String) data.get("lan1"), (String) data.get("lan2")));
+                                words.add(document.toObject(Word.class));
                             }
                         } else {
                             Log.w(TAG, "Error getting document.", task.getException());
@@ -154,6 +205,16 @@ public class FirestoreService {
 
         return null;
     }
+
+//    private Word fromData(Map<String, Object> data) {
+//        return new Word(
+//                (String) data.get("lan1"),
+//                (String) data.get("lan2"),
+//                (String) data.get("desc"),
+//                (int) data.get("kn"),
+//                new Date((Long) data.get("updated"))
+//        );
+//    }
 
 //    public void addRating(String email, AppRating appRating) {
 //        Log.d(TAG, "Add rating for email=" + email + ", rating=" + appRating.toString());

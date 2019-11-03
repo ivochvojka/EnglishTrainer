@@ -1,3 +1,12 @@
 package cz.ich.englishtrainer.model
 
-data class Word(val lan1: String, val lan2: String)
+import java.util.*
+
+data class Word(var lan1: String?,
+                var lan2: String?,
+                var desc: String? = null,
+                var kn: Int = Knowledge.DONT_KNOW.ordinal,
+                var updated: Date? = null
+                ) {
+    constructor() : this(null, null)
+}

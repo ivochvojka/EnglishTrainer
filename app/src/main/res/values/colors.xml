@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- PALLETTE -->
+<!--    <color name="color_white">#FFFFFFFF</color>-->
+<!--    <color name="color_white">#FFFFFFFF</color>-->
+<!--    <color name="color_white">#FFFFFFFF</color>-->
+<!--    <color name="color_white">#FFFFFFFF</color>-->
+
+
+    <!-- KNOWLEDGE COLORS -->
+    <color name="knowledge_dont_know">@android:color/white</color>
+    <color name="knowledge_less">@android:color/holo_orange_dark</color>
+    <color name="knowledge_more">@android:color/holo_orange_light</color>
+    <color name="knowledge_remembered">@android:color/holo_green_light</color>
 </resources>

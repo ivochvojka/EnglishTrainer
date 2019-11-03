@@ -6,7 +6,19 @@
     <string name="create_user_button">Vytvor uzivatele</string>
     <string name="get_user_button">Ziskej uzivatele</string>
 
-    <!-- MENU -->
+    <!-- MENU CATEGORY-->
     <string name="action_logout">Odhlásit se</string>
     <string name="action_add_category">Přidej kategorii</string>
+
+    <!-- MENU WORD-->
+    <string name="action_add_word">Přidej slovo</string>
+
+    <!-- ALBUMS -->
+    <string name="album_add">Přidej album</string>
+
+    <!-- WORDS-->
+    <string name="word_add_title">Přidej slovo</string>
+    <string name="word_add_btn">Ulož</string>
+    <string name="word_add_cancel">Zpět</string>
+
 </resources>

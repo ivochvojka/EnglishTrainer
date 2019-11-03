@@ -32,6 +32,10 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun getAlbums(): MutableList<String> {
+        return albums
+    }
+
     inner class AlbumViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(albumName: String) {
             view.findViewById<ViewGroup>(R.id.container_album).setOnClickListener {
