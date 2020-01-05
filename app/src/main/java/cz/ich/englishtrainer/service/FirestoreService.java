@@ -111,7 +111,7 @@ public class FirestoreService {
         return subject;
     }
 
-    public Completable addWord(final String album, Word word) {
+    public Completable addWord(final String album, final Word word) {
         final CompletableSubject subject = CompletableSubject.create();
 
         word.setUpdated(new Date());
@@ -126,6 +126,37 @@ public class FirestoreService {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Timber.d("Reference to word added successfully");
+                        word.setPath(documentReference.getPath());
+                        subject.onComplete();
+                    }
+                });
+
+        return subject;
+    }
+
+    public Completable deleteWord(Word word) {
+        final CompletableSubject subject = CompletableSubject.create();
+        mFirebaseFirestore.document(word.getPath())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Timber.d("Word successfully deleted");
+                        subject.onComplete();
+                    }
+                });
+
+        return subject;
+    }
+
+    public Completable updateWord(Word word) {
+        final CompletableSubject subject = CompletableSubject.create();
+        mFirebaseFirestore.document(word.getPath())
+                .set(word)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Timber.d("Word successfully changed");
                         subject.onComplete();
                     }
                 });
@@ -147,7 +178,9 @@ public class FirestoreService {
                         final List<Word> words = new ArrayList<>();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult().getDocuments()) {
-                                words.add(document.toObject(Word.class));
+                                final Word word = document.toObject(Word.class);
+                                word.setPath(document.getReference().getPath());
+                                words.add(word);
                             }
                         } else {
                             Log.w(TAG, "Error getting document.", task.getException());

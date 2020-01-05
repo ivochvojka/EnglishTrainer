@@ -11,7 +11,15 @@
     <string name="action_add_category">Přidej kategorii</string>
 
     <!-- MENU WORD-->
+    <string name="action_show_translate_all">Ukaž překlady</string>
+    <string name="action_hide_translate_all">Schovej překlady</string>
+    <string name="action_show_translate">Ukaž překlad</string>
+    <string name="action_hide_translate">Schovej překlad</string>
     <string name="action_add_word">Přidej slovo</string>
+    <string name="action_edit">Edituj</string>
+    <string name="action_delete">Smaž</string>
+    <string name="action_difficulty_lower">Sniž obtížnost</string>
+    <string name="action_difficulty_higher">Zvyš obtížnost</string>
 
     <!-- ALBUMS -->
     <string name="album_add">Přidej album</string>
